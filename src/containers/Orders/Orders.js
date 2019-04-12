@@ -4,6 +4,7 @@ import axios from '../../axios-orders';
 //import dash from '../../axios-dashquest';
 //import classes from './Orders.css';
 import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler';
+import Spinner from '../../components/UI/Spinner/Spinner'
     
 class Orders extends Component {
     
@@ -37,8 +38,11 @@ class Orders extends Component {
     }
 
     render() {
-        let orders =<div style={{textAlign: 'center'}}><h3>Please order something!</h3></div>;
-        if(this.state.orders.length > 0){
+        let orders = <div style={{textAlign: 'center'}}>
+                        <h3>Please order something!</h3>
+                        <Spinner />
+                    </div>;
+        if(!this.state.loading){
             orders = <div className="ui three stackable cards ">
                         {this.state.orders.map(order => {
                             return <Order key={order.id} 
